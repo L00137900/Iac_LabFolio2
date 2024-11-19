@@ -15,14 +15,14 @@ class MyMultipleStacks(TerraformStack):
     def __init__(self, scope: Construct, id: str, config: MyMultipleStacksConfig):
         super().__init__(scope, id)
 
-        region = "us-east-1" if config.region == None else config.region
+        region = "eu-west-1" if config.region == None else config.region
 
         AwsProvider(self, "aws",
             region = region
         )
 
         Instance(self, "Hello",
-            ami = "ami-2757f631",
+            ami = "ami-0fcc0bef51bad3cb2",
             instance_type = "t2.micro",
             tags = {
                 "environment": config.environment,
