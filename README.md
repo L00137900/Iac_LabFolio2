@@ -3,7 +3,7 @@
 This lab uses terraform CDK with Python to help manage AWS resources.
 
 # Built with
-* Python 3.12
+* Python 3.13
 * Terraform v1.9.8
 * Git 2.46.2
 
