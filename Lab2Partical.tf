@@ -3,6 +3,10 @@ from cdktf import App, TerraformStack
 from imports.aws.instance import Instance
 from imports.aws.provider import AwsProvider
 
+DEFAULT_AMI_ID = "ami-0fcc0bef51bad3cb2"   # AMI ID for EC2 instance
+DEFAULT_INSTANCE_TYPE = "t2.micro"         # EC2 instance type
+DEFAULT_REGION = "eu-west-1"               # Default Region
+
 #Configuration for stack settings
 class MyMultipleStacksConfig:
     environment: str
@@ -17,7 +21,7 @@ class MyMultipleStacks(TerraformStack):
         super().__init__(scope, id)
 
 #Selecting the region in AWS
-        region = "eu-west-1" if config.region == None else config.region
+        region = config.region or "eu-west-1"
 
         AwsProvider(self, "aws",
             region = region
@@ -25,8 +29,8 @@ class MyMultipleStacks(TerraformStack):
 
 #Creating an EC2 instance
         Instance(self, "Hello",
-            ami = "ami-0fcc0bef51bad3cb2",
-            instance_type = "t2.micro",
+            ami = DEFAULT_AMI_ID,
+            instance_type = DEFAULT_INSTANCE_TYPE,
             tags = {
                 "environment": config.environment,
             }
