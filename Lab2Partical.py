@@ -21,7 +21,7 @@ class MyMultipleStacks(TerraformStack):
         super().__init__(scope, id)
 
 #Selecting the region in AWS
-        region = config.region or "eu-west-1"
+        region = config.region or DEFAULT_REGION
 
         AwsProvider(self, "aws",
             region = region
